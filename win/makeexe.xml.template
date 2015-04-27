@@ -1,0 +1,35 @@
+<launch4jConfig>
+  <dontWrapJar>false</dontWrapJar>
+  <headerType>gui</headerType>
+  <outfile>@APP_NAME@-@VERSION@.exe</outfile>
+  <jar>@JAR_NAME@</jar>
+  <errTitle></errTitle>
+  <cmdLine></cmdLine>
+  <chdir></chdir>
+  <priority>normal</priority>
+  <downloadUrl>http://java.com/download</downloadUrl>
+  <customProcName>false</customProcName>
+  <stayAlive>false</stayAlive>
+  <manifest></manifest>  
+  <icon>resources/icons/appicon.ico</icon>
+  <jre>
+    <path></path>
+    <minVersion>1.6.0</minVersion>
+    <maxVersion></maxVersion>
+    <jdkPreference>preferJre</jdkPreference>
+    <initialHeapSize>0</initialHeapSize>
+    <maxHeapSize>256</maxHeapSize>
+  </jre>
+  <versionInfo>
+    <fileVersion>@VERSION@</fileVersion>
+    <txtFileVersion>v.@VERSION@ (Build @BUILD_NUMBER@)</txtFileVersion>
+    <fileDescription>Software for Content Analysis</fileDescription>
+    <copyright>Will Lowe 2006-2012 (GPL license)</copyright>
+    <productVersion>@VERSION@</productVersion>
+    <txtProductVersion>@APP_NAME@</txtProductVersion>
+    <productName>@APP_NAME@</productName>
+    <companyName></companyName>
+    <internalName>@APP_NAME@-@VERSION@</internalName>
+    <originalFilename>@APP_NAME@-@VERSION@.exe</originalFilename>
+  </versionInfo>
+</launch4jConfig>

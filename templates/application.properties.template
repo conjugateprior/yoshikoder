@@ -1,0 +1,5 @@
+Yoshikoder.application.name=Yoshikoder
+Yoshikoder.application.version=@BUILD_VERSION@
+Yoshikoder.application.buildnumber=@BUILD_NUMBER@
+Yoshikoder.application.icon=icons/YK2.png
+Yoshikoder.application.copyright=Will Lowe 2006, Gnu Public License

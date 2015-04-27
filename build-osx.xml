@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<project name="Yoshikoder OSX Application" basedir="." default="all">
+  
+  <property file="build.properties"/>
+
+  <target name="all" 
+          description="Generate an OSX application and make a disk image"
+          depends="clean,jni,osx,dmg"/>
+
+  <target name="clean"
+          description="Remove existing OSX application, dmg, and JNI library">
+    <delete dir="Yoshikoder.app"/>
+    <delete file="Yoshikoder-${build.version}.dmg"/>
+    <delete file="libHelpBookJNI.jnilib"/>
+  </target>
+
+  <target name="jni"
+          description="Compile the JNI bridge that launches OSX help">
+    <exec executable="cc">
+      <arg line="-c"/>
+      <arg line="-I/System/Library/Frameworks/JavaVM.framework/Headers"/>
+      <arg line="-o HelpBookJNI.o"/> 
+      <arg value="src/objc/HelpBookJNI.m"/>
+    </exec>
+    <exec executable="cc">
+      <arg line="-dynamiclib"/>
+      <arg line="-framework JavaVM"/>
+      <arg line="-framework Cocoa"/>
+      <arg line="-o libHelpBookJNI.jnilib"/>
+      <arg value="HelpBookJNI.o"/>   
+    </exec>
+    <delete file="HelpBookJNI.o" quiet="true"/> 
+  </target>
+
+  <target name="osx"
+          description="Generate an OSX application">
+    <taskdef name="jarbundler" 
+             classname="net.sourceforge.jarbundler.JarBundler"
+             classpath="/Users/will/code/jarbundler-2.2.0/jarbundler-2.2.0.jar"/>
+    <jarbundler dir="." 
+                name="Yoshikoder" 
+                mainclass="edu.harvard.wcfia.yoshikoder.Yoshikoder"
+                jar="Yoshikoder-${build.version}.jar" 
+		vmoptions="-Xmx256m"
+	        build="${build.version}"
+                bundleid="edu.harvard.wcfia.yoshikoder.Yoshikoder"
+                helpbookfolder="Help"
+                helpbookname="Yoshikoder Help"
+                icon="resources/icons/appicon.icns"
+                jvmversion="1.4+">
+      <!-- icons path above -->
+      <!-- Copy the HelpBook JNI library  -->
+      <javafilelist dir="." files="libHelpBookJNI.jnilib"/>
+
+      <javaproperty name="apple.laf.useScreenMenuBar" value="true"/>
+
+    	<documenttype name="Yoshikoder Project"
+    	                    extensions="ykp" 
+    	                    iconFile="resources/icons/appicon-project.icns"
+    	                    role="Editor"/>
+      <helpbook>
+        <fileset dir="onlinehelp"/>
+      </helpbook>
+    </jarbundler>
+  </target>
+
+  <target name="dmg"
+          description="Make a disk image of the application">
+    <exec executable="hdiutil">
+      <arg value="create"/>
+      <arg value="-srcfolder"/>
+      <arg value="Yoshikoder.app"/>
+      <arg value="Yoshikoder-${build.version}.dmg"/>
+    </exec>
+  </target>
+  	
+</project>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1- transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        
+    <title>Yoshikoder Online Help</title>
+    <style type="text/css">
+      body {
+      margin: 20px;
+      font-family: "Lucida Grande", Verdana, Arial, Helvetica, serif;
+      background-color: rgb(100%, 100%, 100%);
+      font-size: 10pt;
+      }
+      h1 { color: #333333; }
+      h2 { color: #004080; }
+      h3 { color: #666666; }
+      h4 { margin-left: 20px; color: #666666; }
+      b { color: #4C4C4C; font-weight: bold; }
+      a { color: #004080; font-weight: bold; text-decoration: none; }
+      </style>
+  </head>
+  <body>
+    
+  <h1 id="tokenization">Tokenization</h1>
+  <p>You can add your own tokenizers for particular languages using the Tokenizers tab in the Preferences. If you want to build your <em>own</em> tokenizer, read on.</p>
+  <h2 id="interfaces">Interfaces</h2>
+  <p>Tokenizers are java classes that implement the interface 'Tokenizer'</p>
+  <pre><code>  public interface Tokenizer {
+      public TokenList getTokens(String txt) throws TokenizationException;
+      public Locale[] getLocales();
+  }</code></pre>
+  <p>You can compile against the Yoshikoder codebase from sourceforge. Here 'TokenList' trivially extends 'java.util.List'. The 'Token' interface is</p>
+  <pre><code>  public interface Token {
+      public String getText();
+      public int getStart();
+      public int getEnd();
+  }</code></pre>
+  <p>A 'Token' has some text, the token itself, and a span of characters. In a given document if a token spans the third through fifth character, then 'getStart' should return 2 (counting from 0), and 'getEnd' should return 5.</p>
+  <h2 id="implementations">Implementations</h2>
+  <p>The jar file is available that provides these interfaces and some default implementations: 'TokenImpl', 'TokenListImpl', and 'TokenizationException'. You should link to this jar when you compile your code and include it in deployments.</p>
+  <h2 id="deployment">Deployment</h2>
+  <p>Tokenizers should be deployed as Jar files. There must be a properties file at the top level of the Jar called 'tokenizer.properties'. The contents must include 'name' - the short name of the tokenizer, 'classname' - the fully qualified name of the 'Tokenizer' implementation, and 'locales' - a space separated list of java locales, specified in the same manner as the 'toString' method on 'java.util.Locale'. A 'description' is optional. A sample 'tokenizer.properties' file is shown below:</p>
+  <pre><code>  name=Simp. Chinese
+  description=Simplified Chinese Tokenizer
+  # Specify [lang] as well as [lang]_[country] locales where necessary
+  locales=zh_CN zh
+  classname=com.mandarintools.SimplifiedChineseTokenizer</code></pre> 
+    
+  </body>
+</html>

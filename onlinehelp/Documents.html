@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1- transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        
+    <title>Yoshikoder Online Help</title>
+    <style type="text/css">
+      body {
+      margin: 20px;
+      font-family: "Lucida Grande", Verdana, Arial, Helvetica, serif;
+      background-color: rgb(100%, 100%, 100%);
+      font-size: 10pt;
+      }
+      h1 { color: #333333; }
+      h2 { color: #004080; }
+      h3 { color: #666666; }
+      h4 { margin-left: 20px; color: #666666; }
+      b { color: #4C4C4C; font-weight: bold; }
+      a { color: #004080; font-weight: bold; text-decoration: none; }
+      </style>
+  </head>
+  <body>
+    
+  <h1 id="documents">Documents</h1>
+  <p>Yoshikoder deals with plain text documents. If you have documents in other formats, e.g. Word, or PDF you should convert them first. (See 'Converting to plain text' below).</p>
+  <p>When you add documents to a project, e.g. using <strong>Documents&gt;Add Documents</strong> their names appear in the documents list. Note that when you add a document to a project you are only adding a reference to it. This has two implications:</p>
+  <p>First, if you close the application and then move or delete the original document, Yoshikoder will not be able to find it again when it re-opens. If that happens you should remove the dangling reference from the document list and re-add the document from its new location.</p>
+  <p>Second, when you remove a document from the Yoshikoder you do not affect the original file. It is still there in your filesystem.</p>
+  <p>To remove documents from a project, selectthem and use <strong>Documents&gt;Remove Documents</strong></p>
+  <p>You can also export a copy of any document in one of two Unicode formats using the <strong>Documents&gt;Export</strong> menu item.</p>
+  <p>Documents have a location in the file system; a title, by which they are known within a project; an encoding, which records what character set the document file uses; and a locale, which indicates what language the document is in. These are set to default values specified in the Preferences when documents are added, but can be altered later using <strong>Documents&gt;Edit Document</strong>.</p>
+  <p>Note that altering the file encoding is not recommended unless the current one has generated nonsense in the text window. Altering the locale will have little if any effect on tokenisation in Western languages.</p>
+  <h2 id="converting-to-plain-text">Converting to plain text</h2>
+  <p>Most applications will allow you to 'save as' text. If you have a lot of documents it may be easier to use a tool to convert them in one go. The <a href="http://www.williamlowe.net/software/#ykconverter">YKConverter</a> might be useful for this.</p>
+  <p>If, after conversion to plain text you find strange looking characters in your documents when you add them this is a sign that Yoshikoder's expected encoding (sometimes called 'character set') is not same as the document's encoding. If this happens you should determine the documents' encoding, set the Yoshikoder's default encoding appropriately in the Preferences, and re-add the documents.</p>
+  <h2 id="batch-conversion">Batch conversion</h2>
+  <p>Alternatively you can convert the documents into the Yoshikoder's default encoding before adding them (provided you are confident that it will be able to represent all the characters in the documents) The <a href="http://sourceforge.net/projects/reencoder/">Reencoder</a> might be helpful for this.</p> 
+    
+  </body>
+</html>

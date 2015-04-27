@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<project name="Yoshikoder" 
+         basedir="." 
+         default="jar">
+  
+  <property file="build.properties"/>
+  
+  <property name="dir" 
+            value="."/>
+  <property name="source.dir" 
+            value="src/java"/>
+  <property name="class.dir" 
+            value="classes"/>
+  <property name="lib.dir" 
+            value="lib"/>
+  <property name="resource.dir" 
+            value="resources"/>
+  <property name="build.dir" 
+            value="build"/>
+  
+  <property name="userdocs.dir" 
+            value="onlinehelp"/>
+  <property name="javadocs.dir" 
+            value="yk-${build.version}-javadocs"/>
+  <property name="jarname" 
+            value="Yoshikoder-${build.version}.jar"/>	
+  <property name="main.class" 
+            value="edu.harvard.wcfia.yoshikoder.Yoshikoder"/>
+	
+  <path id="project.class.path">
+    <pathelement location="${class.root}" />
+    <fileset dir="${lib.dir}">
+      <include name="*.jar" />
+    </fileset>
+  </path>
+
+  <target name="clean" 
+          description="Removes classes, temporary directories, and targets">
+    <delete dir="${class.dir}" />
+    <delete dir="${build.dir}" />
+    <delete dir="${javadocs.dir}" />
+    <delete file="${javadocs.dir}.zip" />		
+    <delete file="${jarname}" />
+    <delete file="${resource.dir}/localization/application.properties"/>
+  </target>
+  
+  <target name="prepare" 
+          description="Sets up application info in resources">
+    <propertyfile file="${resource.dir}/localization/application.properties">
+		<entry key="Yoshikoder.application.name" value="Yoshikoder"/>
+    	<entry key="Yoshikoder.application.version" value="${build.version}"/>
+    	<entry key="Yoshikoder.application.buildnumber" value="${build.number}"/>
+    	<entry key="Yoshikoder.application.icon" value="icons/appicon.png"/>
+    	<entry key="Yoshikoder.application.copyright" value="Will Lowe 2006-2012, Gnu Public License"/>
+    </propertyfile>
+  </target>
+  
+  <target name="compile" 
+          depends="prepare"
+          description="Compiles all Java classes">
+    <mkdir dir="${class.dir}" />
+    <javac srcdir="${source.dir}" 
+           destdir="${class.dir}" 
+           debug="on" 
+	   optimize="off" 
+           deprecation="off" 
+           classpathref="project.class.path"
+           source="1.6" 
+           target="1.6" />
+  </target>
+  
+  <target name="javadoc" 
+          description="Creates javadocs">
+    <mkdir dir="${javadocs.dir}" />
+    <javadoc sourcepath="${source.dir}" 
+             destdir="${javadocs.dir}" 
+	     classpathref="project.class.path">
+      <fileset dir="${source.dir}" 
+               includes="**/*.java" />
+    </javadoc>
+    <zip destfile="${javadocs.dir}.zip">
+      <zipfileset dir="${javadocs.dir}" />
+    </zip>
+  </target>
+  
+  <target name="userdoc" 
+          description="Makes a zip file of online help">    
+    <zip destfile="${userdocs.dir}.zip">
+      <fileset dir="${dir}">
+	<include name="${userdocs.dir}/**"/>
+      </fileset>
+    </zip>
+  </target>
+  
+  <target name="jar" 
+	  description="Creates jar"
+          depends="clean,compile,userdoc">
+
+    <mkdir dir="${build.dir}" />
+    <unzip dest="${build.dir}">
+      <patternset>
+	<include name="**/*" />
+	<exclude name="META-INF/*" />
+      </patternset>
+      <fileset dir="${lib.dir}">
+	<include name="*.jar" />
+      </fileset>
+    </unzip>
+    
+    <copy todir="${build.dir}">
+      <fileset dir="${class.dir}" includes="**" />
+      <fileset dir="${resource.dir}" />
+    </copy>
+    
+    <!-- rename the help docs so they can be found in the jar -->
+    <move file="${userdocs.dir}.zip"
+	  tofile="${build.dir}/onlinehelp.zip"/>
+    
+    <jar destfile="${jarname}" 
+         basedir="${build.dir}">
+      <manifest>
+	<attribute name="Main-Class" 
+                   value="${main.class}" />
+      </manifest>
+    </jar>
+  </target>
+    	
+  <target name="source" 
+          description="Bundles up the main directory">
+    <zip destfile="../Yoshikoder-${build.version}-source.zip">
+      <fileset dir="${dir}">
+        <include name="**/*"/>
+      </fileset>
+    </zip>
+    <move file="../yk-${build.version}-source.zip" 
+          todir="${dir}"/>
+  </target>	
+
+</project>

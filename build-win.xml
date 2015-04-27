@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<project name="Yoshikoder Windows Application" 
+         basedir="." 
+         default="all">
+  
+  <property file="build.properties"/>
+  
+  <!-- Install your own OS-specific launch4j, and change this path -->
+  <property name="launch4j.dir" location="/Users/will/code/launch4j"/>
+
+  <!-- make launch4j available -->
+  <taskdef name="launch4j"
+           classname="net.sf.launch4j.ant.Launch4jTask"
+           classpath="${launch4j.dir}/launch4j.jar:${launch4j.dir}/lib/xstream.jar"/>
+
+  <target name="all" 
+          description="Generate a Windows executable"
+          depends="clean,prepare,win"/>
+  
+  <target name="prepare"
+          description="Fill in the template launch4j config file">
+    <copy file="win/makeexe.xml.template" 
+	  tofile="makeexe.xml">
+      <filterset>
+	<filter token="VERSION" value="${build.version}"/>
+	<filter token="BUILD_NUMBER" value="${build.number}"/>
+        <filter token="APP_NAME" value="Yoshikoder"/>
+        <filter token="JAR_NAME" value="Yoshikoder-${build.version}.jar"/>
+      </filterset>
+    </copy>
+  </target>
+
+  <target name="win"
+          description="Run launch4j on the config file">
+    <launch4j configFile="makeexe.xml" fileVersion="0.6.4.0"
+     txtFileVersion="0.6.4.0"
+     productVersion="0.6.4.0"/>
+  </target>
+
+  <target name="clean"
+          description="Remove executable and config file">
+    <delete file="Yoshikoder-${build.version}.exe"/>
+    <delete file="makeexe.xml"/>
+  </target>
+
+</project>

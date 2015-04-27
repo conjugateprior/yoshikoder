@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp spec="1.0"
+  codebase="http://www.yoshikoder.org"
+  href="yoshikoder.jnlp">
+<information>
+  <title>Yoshikoder</title>
+  <vendor>Weatherhead Center for International Affairs</vendor>
+  <homepage href="http://yoshikoder.org" />
+  <description>Multilingual content analysis</description>
+  <icon href="@ICON_PATH@"/>
+  <offline-allowed/>
+</information>
+<security>
+  <all-permissions/>
+</security>
+<resources>
+  <j2se version="@J2SE_VERSION@" />
+  <jar href="@JAR_PATH@"/>
+</resources>
+<application-desc main-class="@MAIN_CLASS@"/>
+</jnlp>
+
