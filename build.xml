@@ -65,8 +65,10 @@
 	   optimize="off" 
            deprecation="off" 
            classpathref="project.class.path"
-           source="1.6" 
-           target="1.6" />
+           source="1.8" 
+           target="1.8">
+    <compilerarg value="-XDignore.symbol.file"/>
+    </javac>
   </target>
   
   <target name="javadoc" 

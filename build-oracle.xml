@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<project name="Yoshikoder OSX Application" basedir="." default="all">
+  
+  <property file="build.properties"/>
+
+  <target name="all" 
+          description="Generate an OSX application and make a disk image"
+          depends="bundle,dmg"/>
+
+  <target name="clean"
+          description="Remove existing OSX application, dmg, and JNI library">
+    <delete dir="Yoshikoder.app"/>
+    <delete file="Yoshikoder-${build.version}.dmg"/>
+  </target>
+
+    <target name="bundle">
+      <taskdef name="bundleapp" 
+        classpath="lib/appbundler-1.0ea.jar"
+        classname="com.oracle.appbundler.AppBundlerTask"/>
+
+      <bundleapp 
+          jvmrequired="1.8"
+          outputdirectory="."
+          name="Yoshikoder"
+          displayname="Yoshikoder"
+          executableName="Yoshikoder"
+          identifier="edu.harvard.wcfia.yoshikoder.Yoshikoder"
+          shortversion="${build.version}"
+          version="${build.version}"
+          icon="resources/icons/appicon.icns"
+          mainclassname="edu.harvard.wcfia.yoshikoder.Yoshikoder"
+          copyright="Will Lowe 2012">
+
+          <classpath file="Yoshikoder-0.6.4.jar"/>  
+          <arch name="x86_64"/>
+          <arch name="i386"/>
+
+          <bundledocument extensions="ykp"
+            iconFile="resources/icons/appicon-project.icns"
+            name="Yoshikoder Project"
+            role="editor">
+          </bundledocument> 
+
+    	<documenttype name="Yoshikoder Project"
+    	                    extensions="ykp" 
+    	                    iconFile="resources/icons/appicon-project.icns"
+    	                    role="Editor"/>
+
+          <!-- Workaround as com.apple.mrj.application.apple.menu.about.name property may no longer work -->
+          <option value="-Xdock:name=YK"/>
+          <option value="-Dapple.laf.useScreenMenuBar=true"/>
+          <option value="-Dcom.apple.macos.use-file-dialog-packages=true"/>
+          <option value="-Dcom.apple.macos.useScreenMenuBar=true"/>
+          <option value="-Dcom.apple.mrj.application.apple.menu.about.name=${bundle.name}"/>
+          <option value="-Dcom.apple.smallTabs=true"/>
+          <option value="-Dfile.encoding=UTF-8"/>
+
+          <option value="-Xmx1024M" name="Xmx"/>
+      </bundleapp>
+    </target>
+
+  <target name="dmg"
+          description="Make a disk image of the application">
+    <exec executable="hdiutil">
+      <arg value="create"/>
+      <arg value="-srcfolder"/>
+      <arg value="Yoshikoder.app"/>
+      <arg value="Yoshikoder-${build.version}.dmg"/>
+    </exec>
+  </target>
+
+</project>

@@ -36,7 +36,7 @@
           description="Generate an OSX application">
     <taskdef name="jarbundler" 
              classname="net.sourceforge.jarbundler.JarBundler"
-             classpath="/Users/will/code/jarbundler-2.2.0/jarbundler-2.2.0.jar"/>
+             classpath="/usr/share/ant/lib/jarbundler-2.3.1.jar"/>
     <jarbundler dir="." 
                 name="Yoshikoder" 
                 mainclass="edu.harvard.wcfia.yoshikoder.Yoshikoder"
@@ -47,7 +47,8 @@
                 helpbookfolder="Help"
                 helpbookname="Yoshikoder Help"
                 icon="resources/icons/appicon.icns"
-                jvmversion="1.4+">
+                jvmversion="1.8"
+                stubfile="resources/universalJavaApplicationStub">
       <!-- icons path above -->
       <!-- Copy the HelpBook JNI library  -->
       <javafilelist dir="." files="libHelpBookJNI.jnilib"/>
