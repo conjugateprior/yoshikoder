@@ -14,15 +14,15 @@
   <icon>resources/icons/appicon.ico</icon>
   <jre>
     <path></path>
-    <minVersion>1.6.0</minVersion>
+    <minVersion>1.8.0</minVersion>
     <maxVersion></maxVersion>
     <jdkPreference>preferJre</jdkPreference>
     <initialHeapSize>0</initialHeapSize>
-    <maxHeapSize>256</maxHeapSize>
+    <maxHeapSize>512</maxHeapSize>
   </jre>
   <versionInfo>
     <fileVersion>@VERSION@</fileVersion>
-    <txtFileVersion>v.@VERSION@ (Build @BUILD_NUMBER@)</txtFileVersion>
+    <txtFileVersion>v.@VERSION@</txtFileVersion>
     <fileDescription>Software for Content Analysis</fileDescription>
     <copyright>Will Lowe 2006-2012 (GPL license)</copyright>
     <productVersion>@VERSION@</productVersion>
