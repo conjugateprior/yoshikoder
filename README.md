@@ -1,8 +1,10 @@
-----------------
-Yoshikoder 0.6.4
-----------------
+# Yoshikoder 0.6.5
 
- 
+Well, we're on Github but otherwise things look very much as before, except 
+we now look nice on Retina displays and require Java 1.8 to run.
+
+## Changes back in 0.6.4
+
 There are lots of small changes in this release.  If you dislike them, you can use the 
 previous version (all the file formats are the same).
 
@@ -64,55 +66,14 @@ Some things are not quite there yet:
 Compiling
 ---------
 
-Compilation is divided into a first step that generates a platform
-independent jar file, and subsequent steps that generate an OSX
-application, and a Windows executable.  
+If you've got [`launch4j`](https://sourceforge.net/projects/launch4j/) and 
+Infinitekind's fork of Oracle's [`appbundler`](https://bitbucket.org/infinitekind/appbundler)
+installed, then change the paths in `build.xml` to where you put them and type:
 
-Platform Independent Jar
-------------------------
+    ant dist
 
-Type: 
+to create a jar file, a Mac application and its disk image, and a Windows executable.
 
-    ant 
+The ant task `jar` requires neither of these extras.
 
-The resulting jar file will be named Yoshikoder-<X> where X is the
-version number found in build.properties
-
-OSX Application
----------------
-
-Type: 
-
-    ant -buildfile build-osx.xml
-
-This will generate a .app directory which is a universal OSX
-application, provided:
-
-1. You are running on OSX.  
-
-   The build process tries to generate a .dmg
-   file with the application inside.  This will fail if you are not
-   running on OSX because it runs a commmand line application only
-   available on that platform.  Developer tools may also need to be
-   installed - I haven't checked.
-
-   The process also compiles a piece of objective-c code that launches
-   the OSX Help Viewer.  This will fail without the apprpriate shared
-   libraries.
-
-2. The JarBundler ant task is installed as one of your Ant libraries
-
-   The task is availble from http://informagen.com/JarBundler/
-
-Windows Executable
-------------------
-
-Type:
-
-    ant -buildfile build-win.xml
-
-This will generate a Windows executable, provided you first download a
-version of launch4j suitable for your OS and adjust the launch4j.dir
-ant property to the correct location.
-
-Will Lowe, May 2012
+Will Lowe, April 2015
