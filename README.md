@@ -3,6 +3,8 @@
 Well, we're on Github but otherwise things look very much as before, except 
 we now look nice on Retina displays and require Java 1.8 to run.
 
+Also, we've got multi-word pattern matching.
+
 ## Changes back in 0.6.4
 
 There are lots of small changes in this release.  If you dislike them, you can use the 
