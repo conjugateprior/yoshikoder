@@ -210,8 +210,20 @@
         <option value="-Dfile.encoding=UTF-8"/>
 
         <option value="-Xmx512M" name="Xmx"/>
+
+        <!-- helpbook hack -->
+        <plistentry key="CFBundleHelpBookFolder" value="Help"/>
+        <plistentry key="CFBundleHelpBookName" value="Yoshikoder Help"/>
+
     </bundleapp>
 	
+    <!-- first hack at helpbooking --> 
+    <copy todir="Yoshikoder.app/Contents/Resources/Help/">
+      <fileset dir="onlinehelp" includes="**/*" />
+    </copy>
+    <copy file="${resource.dir}/libHelpBookJNI.jnilib" 
+          todir="Yoshikoder.app/Contents/Java/" />
+
 	<!-- make a disk image -->
     <exec executable="hdiutil">
         <arg value="create"/>
