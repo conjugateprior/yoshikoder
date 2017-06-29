@@ -17,3 +17,9 @@ If you run into a bug you can tell me about it [here](http://github.com/conjugat
 ## News
 
 There's not much new lately as I'm working on R packages for text analysis instead.  Mostly [Quanteda](http://github.com/kbenoit/quanteda) and [Austin](http://github.com/conjugateprior/austin).
+
+## Citation
+
+If you’d like to refer to the package in written work (and you should) you can use this:
+
+> Will Lowe (2015) 'Yoshikoder: Cross-platform multilingual content analysis'. Java software, version 0.6.5, URL https://conjugateprior.github.com/yoshikoder
