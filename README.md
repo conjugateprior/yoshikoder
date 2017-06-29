@@ -1,8 +1,10 @@
-# Yoshikoder (v0.6.5)
-
 ![Screenshot of Yoshikoder](http://conjugateprior.org/wp-content/uploads/screenshot1.png)
 
 The Yoshikoder is a simple cross-platform multilingual content analysis program.  You can use it to count words, create and apply content analysis dictionaries, highlight documents, and look at keywords in context.
+
+## Resources
+
+You can find some dictionary and other resources at the [old place](http://yoshikoder.sourceforge.net/resources.html).
 
 ## Installation
 
@@ -14,4 +16,4 @@ If you run into a bug you can tell me about it [here](http://github.com/conjugat
 
 ## News
 
-There's not much new lately as I'm mostly working on R packages for text analysis, most recently [Quanteda](http://github.com/kbenoit/quanteda) and [Austin](http://github.com/conjugateprior/austin)).
+There's not much new lately as I'm working on R packages for text analysis instead.  Mostly [Quanteda](http://github.com/kbenoit/quanteda) and [Austin](http://github.com/conjugateprior/austin).
