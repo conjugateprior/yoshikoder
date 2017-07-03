@@ -1,10 +1,13 @@
-TODO
-----
+Compiling
+---------
 
-4. make document title changes resort the document list? (later)
-6. update help pages
-7. dictionary import onto a node - also an add function.
+If you've got [`launch4j`](https://sourceforge.net/projects/launch4j/) and 
+Infinitekind's fork of Oracle's [`appbundler`](https://bitbucket.org/infinitekind/appbundler)
+installed, then change the paths in `build.xml` to where you put them and type:
 
-thing.vbpro
+    ant dist
 
-open / add 
+to create a jar file, a Mac application and its disk image, and a Windows executable.
+
+The ant task `jar` requires neither of these extras.
+
