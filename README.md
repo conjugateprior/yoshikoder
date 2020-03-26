@@ -1,4 +1,4 @@
-![Screenshot of Yoshikoder](http://conjugateprior.org/wp-content/uploads/screenshot1.png)
+![Screenshot of Yoshikoder](http://conjugateprior.org/software/yoshikoder/pics/yoshikoder-screenshot.png)
 
 The Yoshikoder is a simple cross-platform multilingual content analysis program.  You can use it to count words, create and apply content analysis dictionaries, highlight documents, and look at keywords in context.
 
